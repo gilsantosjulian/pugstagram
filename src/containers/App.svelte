@@ -1,8 +1,19 @@
 <script>
+  import { onMount } from 'svelte';
   import Header from '../components/Header.svelte';
   import Timeline from '../components/Timeline.svelte';
   import Main from '../components/Main.svelte';
   import Sidebar from '../components/Sidebar.svelte';
+
+  let data = {};
+  const API = 'https://us-central1-pugstagram-co.cloudfunctions.net/data';
+  const API2 = 'https://dog.ceo/api/breeds/list/all';
+
+  onMount(async () => {
+    const response = await fetch(API);
+    data = await response.json();
+  })
+
 </script>
 
 <style>
@@ -25,6 +36,6 @@
 <Header />
 
 <Main>
-  <Timeline />
-  <Sidebar /> 
+  <Timeline posts={data.posts} />
+  <Sidebar {...data.user} /> 
 </Main>
