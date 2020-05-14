@@ -151,5 +151,5 @@
     <h3>{post.username}</h3>
     <span>{post.postComment}</span>
   </div>
-  <Comments />
+  <Comments comments={post.comments} />
 </div>
